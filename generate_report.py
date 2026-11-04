@@ -33,20 +33,20 @@ def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
 
 def add_heading_styled(doc, text, level):
     h = doc.add_heading(text, level=level)
-    h.paragraph_format.space_before = Pt(12)
+    h.paragraph_format.space_before = Pt(14)
     h.paragraph_format.space_after = Pt(4)
     run = h.runs[0]
     run.font.name = 'Calibri'
     if level == 1:
-        run.font.size = Pt(16)
+        run.font.size = Pt(15)
         run.font.bold = True
-        run.font.color.rgb = RGBColor(15, 76, 129) # Navy Classic
+        run.font.color.rgb = RGBColor(15, 76, 129) # Deep Navy
     elif level == 2:
-        run.font.size = Pt(13)
+        run.font.size = Pt(12.5)
         run.font.bold = True
         run.font.color.rgb = RGBColor(31, 78, 121)
     elif level == 3:
-        run.font.size = Pt(11.5)
+        run.font.size = Pt(11)
         run.font.bold = True
         run.font.color.rgb = RGBColor(50, 50, 50)
     return h
@@ -71,21 +71,6 @@ def add_callout(doc, text, title="Catatan Penting"):
     r_text.font.color.rgb = RGBColor(60, 60, 60)
     doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
-def add_code_block(doc, code_str):
-    tbl = doc.add_table(rows=1, cols=1)
-    tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-    cell = tbl.cell(0, 0)
-    set_cell_background(cell, "F8F9FA")
-    set_cell_margins(cell, top=120, bottom=120, left=160, right=160)
-    p = cell.paragraphs[0]
-    p.paragraph_format.space_before = Pt(2)
-    p.paragraph_format.space_after = Pt(2)
-    run = p.add_run(code_str)
-    run.font.name = 'Consolas'
-    run.font.size = Pt(9)
-    run.font.color.rgb = RGBColor(40, 40, 40)
-    doc.add_paragraph().paragraph_format.space_after = Pt(4)
-
 def add_image_with_caption(doc, img_path, caption_text, width=Inches(5.5)):
     if os.path.exists(img_path):
         p_img = doc.add_paragraph()
@@ -97,16 +82,16 @@ def add_image_with_caption(doc, img_path, caption_text, width=Inches(5.5)):
         p_cap = doc.add_paragraph()
         p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_cap.paragraph_format.space_before = Pt(0)
-        p_cap.paragraph_format.space_after = Pt(10)
+        p_cap.paragraph_format.space_after = Pt(8)
         r_cap = p_cap.add_run(caption_text)
         r_cap.font.name = 'Calibri'
         r_cap.font.size = Pt(9.5)
         r_cap.font.italic = True
-        r_cap.font.color.rgb = RGBColor(100, 100, 100)
+        r_cap.font.color.rgb = RGBColor(90, 90, 90)
 
 # ==================== COVER PAGE ====================
 p_top = doc.add_paragraph()
-p_top.paragraph_format.space_before = Pt(20)
+p_top.paragraph_format.space_before = Pt(15)
 p_top.paragraph_format.space_after = Pt(10)
 p_top.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
@@ -116,41 +101,41 @@ r_inst.font.size = Pt(12)
 r_inst.font.bold = True
 r_inst.font.color.rgb = RGBColor(50, 50, 50)
 
-# Logo
+# Logo Telkom
 logo_path = r"E:\Kuliah\PABW\logo_telkom.png"
 if os.path.exists(logo_path):
     p_logo = doc.add_paragraph()
     p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_logo.paragraph_format.space_before = Pt(20)
-    p_logo.paragraph_format.space_after = Pt(25)
-    p_logo.add_run().add_picture(logo_path, width=Inches(2.2))
+    p_logo.paragraph_format.space_before = Pt(15)
+    p_logo.paragraph_format.space_after = Pt(20)
+    p_logo.add_run().add_picture(logo_path, width=Inches(2.1))
 
 p_title = doc.add_paragraph()
 p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-p_title.paragraph_format.space_before = Pt(15)
+p_title.paragraph_format.space_before = Pt(10)
 p_title.paragraph_format.space_after = Pt(10)
 r_t1 = p_title.add_run("LAPORAN PRAKTIKUM PEMROGRAMAN APLIKASI WEB\n")
 r_t1.font.name = 'Calibri'
-r_t1.font.size = Pt(18)
+r_t1.font.size = Pt(17)
 r_t1.font.bold = True
 r_t1.font.color.rgb = RGBColor(15, 76, 129)
 
 r_t2 = p_title.add_run("MODUL 7: CRUD DAN UPLOAD FILE PADA LARAVEL\n")
 r_t2.font.name = 'Calibri'
-r_t2.font.size = Pt(15)
+r_t2.font.size = Pt(14.5)
 r_t2.font.bold = True
 r_t2.font.color.rgb = RGBColor(192, 57, 43)
 
 r_t3 = p_title.add_run("(Implementasi Sistem LaporBanjir BPBD Kabupaten Bandung &\nFitur CRUD Bukti Insiden pada Tugas Akhir Smart Traffic Finder)")
 r_t3.font.name = 'Calibri'
-r_t3.font.size = Pt(12)
+r_t3.font.size = Pt(11.5)
 r_t3.font.italic = True
 r_t3.font.color.rgb = RGBColor(80, 80, 80)
 
 p_identitas = doc.add_paragraph()
 p_identitas.alignment = WD_ALIGN_PARAGRAPH.CENTER
-p_identitas.paragraph_format.space_before = Pt(40)
-p_identitas.paragraph_format.space_after = Pt(40)
+p_identitas.paragraph_format.space_before = Pt(35)
+p_identitas.paragraph_format.space_after = Pt(35)
 
 r_id = p_identitas.add_run(
     "Disusun Oleh:\n"
@@ -170,13 +155,13 @@ doc.add_page_break()
 # ==================== TUJUAN PRAKTIKUM ====================
 add_heading_styled(doc, "1. Tujuan Praktikum", level=1)
 p_tujuan = doc.add_paragraph(
-    "Setelah menyelesaikan praktikum Modul 7 ini, mahasiswa diharapkan memperoleh capaian pembelajaran komprehensif sebagai berikut:\n"
-    "1. Memahami secara mendalam konsep dasar dan arsitektur CRUD (Create, Read, Update, Delete) yang dipadukan dengan Resource Controller dan Resource Route bawaan framework Laravel.\n"
-    "2. Memahami mekanisme penanganan unggah berkas (file upload) di Laravel, meliputi konfigurasi form multipart/form-data, validasi tipe MIME dan batasan ukuran (max size), penyimpanan pada filesystem disk public (store()), serta fungsi symbolic link (php artisan storage:link).\n"
-    "3. Mampu membangun sistem pengelolaan berkas menggunakan antarmuka modern, baik menggunakan Laravel Breeze maupun secara mandiri (manual) menggunakan Blade Template dan Bootstrap 5.\n"
-    "4. Mampu menerapkan perlindungan route melalui Middleware Authentication (auth & guest) sehingga fungsi manipulasi data hanya dapat diakses oleh petugas resmi.\n"
-    "5. Mengimplementasikan manajemen file fisik yang bersih dan aman, di mana file lama terhapus secara otomatis saat pengguna memperbarui berkas atau menghapus data (Storage::disk('public')->delete()).\n"
-    "6. Menerapkan seluruh konsep CRUD dan upload foto pada studi kasus nyata aplikasi LaporBanjir BPBD Kabupaten Bandung serta integrasi fitur unggah bukti kejadian lalu lintas pada project Tugas Akhir Smart Traffic Finder."
+    "Setelah mengikuti dan menyelesaikan seluruh materi praktikum Modul 7 ini, mahasiswa diharapkan:\n"
+    "1. Memahami konsep arsitektur CRUD (Create, Read, Update, Delete) yang dipadukan dengan Resource Controller dan Resource Route pada framework Laravel secara terstruktur.\n"
+    "2. Memahami alur kerja pengunggahan berkas (file upload), konfigurasi atribut form multipart/form-data, validasi tipe MIME dan batas ukuran berkas, penyimpanan berkas pada disk public (store()), serta fungsi symbolic link (php artisan storage:link).\n"
+    "3. Mampu membangun sistem pengelolaan berkas menggunakan antarmuka modern, baik menggunakan Laravel Breeze maupun implementasi mandiri (manual) berbasis layout Blade dan Bootstrap 5.\n"
+    "4. Menerapkan proteksi keamanan rute menggunakan Middleware Authentication (auth & guest) sehingga fungsi manipulasi data krusial hanya dapat diakses oleh pengguna atau petugas yang terverifikasi.\n"
+    "5. Menguasai manajemen berkas fisik di server storage, memastikan berkas lama terhapus otomatis saat data diperbarui atau dihapus menggunakan Facade Storage::disk('public')->delete().\n"
+    "6. Menerapkan fitur CRUD dan upload berkas pada studi kasus nyata aplikasi pengaduan bencana LaporBanjir BPBD Kabupaten Bandung serta integrasi fitur unggah foto bukti insiden pada project Tugas Akhir Smart Traffic Finder."
 )
 p_tujuan.paragraph_format.line_spacing = 1.15
 p_tujuan.paragraph_format.space_after = Pt(8)
@@ -204,14 +189,14 @@ for cell in hdr_cells:
 
 tools_data = [
     ("1", "Sistem Operasi", "Microsoft Windows 11 Home 64-bit"),
-    ("2", "Processor & RAM", "Intel Core i7 / AMD Ryzen (Multi-core), RAM 16 GB, SSD Storage"),
-    ("3", "Web Server & Database Engine", "XAMPP v3.3.0 (Apache/2.4.58 & MariaDB 10.4.32, phpMyAdmin)"),
+    ("2", "Processor & RAM", "Intel Core i7 / AMD Ryzen (Multi-core), RAM 16 GB, SSD"),
+    ("3", "Web Server & DBMS", "XAMPP v3.3.0 (Apache 2.4.58 & MariaDB 10.4.32, phpMyAdmin)"),
     ("4", "Bahasa Pemrograman (Runtime)", "PHP v8.3.33 (CLI ZTS Visual C++ 2019 x64)"),
     ("5", "Dependency Manager", "Composer v2.8.x"),
     ("6", "Framework PHP", "Laravel Framework v11.x / v12.x"),
     ("7", "Frontend Framework & Assets", "Bootstrap 5.3.0 CDN, Tailwind CSS, Font Awesome 6.4.0"),
-    ("8", "Code Editor & Automation", "Visual Studio Code, PowerShell Terminal, Python 3.12 (Selenium WebDriver)"),
-    ("9", "Web Browser Pengujian", "Google Chrome (v157 Headless & Desktop)")
+    ("8", "Code Editor & Automation", "Visual Studio Code, PowerShell Terminal, Python 3.12 (Selenium WebDriver & Pygments)"),
+    ("9", "Web Browser Pengujian", "Google Chrome (Desktop & Headless)")
 ]
 
 for no, nama, spek in tools_data:
@@ -281,65 +266,88 @@ for q, a in tp_q:
     r_a.font.size = Pt(10)
     r_a.font.color.rgb = RGBColor(50, 50, 50)
 
-# ==================== LANGKAH-LANGKAH PRAKTIKUM ====================
-add_heading_styled(doc, "4. Langkah-Langkah Praktikum", level=1)
+# ==================== LANGKAH-LANGKAH PRAKTIKUM (DENGAN CODESNAP) ====================
+add_heading_styled(doc, "4. Langkah-Langkah Praktikum (Implementasi CodeSnap)", level=1)
 
 doc.add_paragraph(
-    "Pada praktikum Modul 7 ini, implementasi tugas dibagi menjadi dua sistem utama:\n"
-    "1. Pembuatan aplikasi LaporBanjir BPBD Kabupaten Bandung secara manual menggunakan Blade Layout & Bootstrap 5, lengkap dengan registrasi/login petugas, public report form, upload foto bukti, dan CRUD lengkap.\n"
-    "2. Penerapan fitur CRUD upload file bukti insiden lalu lintas pada aplikasi Tugas Akhir Smart Traffic Finder."
+    "Pada bagian ini diuraikan tahapan teknis implementasi fitur CRUD dan unggah berkas (file upload) "
+    "lengkap dengan potongan kode sumber yang disajikan menggunakan format visual modern bergaya CodeSnap (Dark IDE theme)."
 ).paragraph_format.space_after = Pt(6)
 
-add_heading_styled(doc, "4.1 Pengerjaan Tugas 1: Aplikasi LaporBanjir BPBD Kabupaten Bandung", level=2)
-
+add_heading_styled(doc, "4.1 Perancangan Skema Database dan Migrasi Tabel Laporan", level=2)
 doc.add_paragraph(
-    "Tahap 1: Inisialisasi Project dan Konfigurasi Database\n"
-    "Project dibuat dengan nama 'laporbanjir' menggunakan Composer. Konfigurasi basis data dihubungkan ke server MySQL pada file .env dengan nama database 'db_laporbanjir'."
+    "Tahap awal pengerjaan aplikasi LaporBanjir adalah menyusun skema tabel database `laporans` melalui Migration Laravel. "
+    "Tabel ini memuat kolom nama pelapor, nomor telepon WhatsApp, kecamatan di Kabupaten Bandung, estimasi tinggi genangan air (cm), "
+    "keterangan detail, path lokasi foto bukti di folder storage, serta status penanganan darurat (nilai bawaan: 'Menunggu')."
 )
-add_code_block(doc, "composer create-project laravel/laravel laporbanjir\ncd laporbanjir\n# Edit .env:\nDB_CONNECTION=mysql\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=db_laporbanjir\nDB_USERNAME=root\nDB_PASSWORD=")
 
-doc.add_paragraph(
-    "Tahap 2: Pembuatan Migration dan Model Laporan\n"
-    "Model Laporan dibuat bersama berkas migration menggunakan opsi -m. Skema tabel memuat kolom identitas pelapor, nomor telepon, kecamatan, koordinat/lokasi, tinggi genangan air dalam cm, keterangan, path foto, dan status penanganan default 'Menunggu'."
-)
-add_code_block(doc, "php artisan make:model Laporan -m\n\n// Isi up() pada migration create_laporans_table:\nSchema::create('laporans', function (Blueprint $table) {\n    $table->id();\n    $table->string('nama_pelapor');\n    $table->string('no_hp', 20);\n    $table->string('lokasi');\n    $table->string('kecamatan');\n    $table->integer('tinggi_air'); // dalam cm\n    $table->text('keterangan')->nullable();\n    $table->string('foto'); // path berkas foto bukti\n    $table->enum('status', ['Menunggu', 'Diproses', 'Selesai'])->default('Menunggu');\n    $table->timestamps();\n});")
+# CodeSnap 1: Migration
+cs_dir = r"E:\Kuliah\PABW\praktikum7\codesnaps"
+add_image_with_caption(doc, os.path.join(cs_dir, "01_migration_laporans.png"), 
+                       "CodeSnap 1: File Migration create_laporans_table.php", width=Inches(5.6))
 
+add_heading_styled(doc, "4.2 Pembuatan Model Eloquent Laporan", level=2)
 doc.add_paragraph(
-    "Tahap 3: Pembuatan Symbolic Link Storage\n"
-    "Agar file gambar yang diunggah ke folder 'storage/app/public' dapat diakses secara publik oleh peramban web melalui helper asset('storage/...'), perintah symbolic link wajib dieksekusi:"
+    "Model Eloquent `Laporan` dibuat untuk menjembatani interaksi aplikasi dengan tabel `laporans`. "
+    "Properti `$fillable` dikonfigurasi untuk mengizinkan operasi *Mass Assignment* secara aman pada kolom-kolom laporan."
 )
-add_code_block(doc, "php artisan storage:link\n// Output: The [public/storage] link has been connected to [storage/app/public].")
+# CodeSnap 2: Model
+add_image_with_caption(doc, os.path.join(cs_dir, "02_model_laporan.png"), 
+                       "CodeSnap 2: Model Eloquent Laporan (app/Models/Laporan.php)", width=Inches(5.4))
 
+add_heading_styled(doc, "4.3 Logika Upload Berkas dan Validasi Input Warga (Store Method)", level=2)
 doc.add_paragraph(
-    "Tahap 4: Implementasi Controller Laporan dan Authentication Petugas\n"
-    "Dibuat dua buah controller: LaporanController (Resource Controller) dan AuthController untuk autentikasi petugas BPBD."
+    "Pada method `store()`, sistem memvalidasi kelayakan berkas gambar (wajib bertipe jpg/jpeg/png dengan batas maksimal 2048 KB) "
+    "serta kelengkapan data administratif warga. Berkas yang lolos verifikasi disimpan ke folder `storage/app/public/foto_banjir` "
+    "menggunakan fungsi `$file->store('foto_banjir', 'public')` yang menghasilkan hash nama unik acak."
 )
-add_code_block(doc, "// LaporanController store() method:\n$validated = $request->validate([\n    'nama_pelapor' => 'required|string|max:255',\n    'no_hp'        => 'required|string|max:20',\n    'lokasi'       => 'required|string|max:255',\n    'kecamatan'    => 'required|string|max:100',\n    'tinggi_air'   => 'required|integer|min:1|max:1000',\n    'keterangan'   => 'nullable|string',\n    'foto'         => 'required|image|mimes:jpg,jpeg,png|max:2048',\n]);\n\nif ($request->hasFile('foto')) {\n    $validated['foto'] = $request->file('foto')->store('foto_banjir', 'public');\n}\n$validated['status'] = 'Menunggu';\nLaporan::create($validated);\nreturn redirect()->route('laporans.create')->with('success', 'Laporan berhasil dikirim!');")
+# CodeSnap 3: Store Method
+add_image_with_caption(doc, os.path.join(cs_dir, "03_store_laporan_upload.png"), 
+                       "CodeSnap 3: Logika Validasi dan Penyimpanan Foto Berkas pada LaporanController (store)", width=Inches(5.6))
 
+add_heading_styled(doc, "4.4 Pembersihan Berkas Fisik saat Pembaruan Data dan Penghapusan Laporan", level=2)
 doc.add_paragraph(
-    "Pada method update() dan destroy(), diterapkan penghapusan file lama menggunakan Storage::disk('public')->delete() agar media penyimpanan server tetap bersih tanpa tumpukan file sampah tak terpakai:"
+    "Untuk mencegah terjadinya penumpukan berkas sampah fisik (*orphan files*) pada kapasitas harddisk server, "
+    "metode `update()` dan `destroy()` dilengkapi logika pembersihan berkas lama secara otomatis menggunakan Facade `Storage`."
 )
-add_code_block(doc, "// Pembersihan foto lama saat update foto baru:\nif ($request->hasFile('foto')) {\n    if ($laporan->foto && Storage::disk('public')->exists($laporan->foto)) {\n        Storage::disk('public')->delete($laporan->foto);\n    }\n    $validated['foto'] = $request->file('foto')->store('foto_banjir', 'public');\n}\n\n// Pembersihan foto saat laporan dihapus permanen:\nif ($laporan->foto && Storage::disk('public')->exists($laporan->foto)) {\n    Storage::disk('public')->delete($laporan->foto);\n}\n$laporan->delete();")
+# CodeSnap 4: Update & Destroy Storage Cleanup
+add_image_with_caption(doc, os.path.join(cs_dir, "04_update_destroy_storage.png"), 
+                       "CodeSnap 4: Logika Pembersihan Berkas Lama di Storage Server (update & destroy)", width=Inches(5.6))
 
+add_heading_styled(doc, "4.5 Konfigurasi Routing dan Proteksi Middleware Authentication", level=2)
 doc.add_paragraph(
-    "Tahap 5: Pengaturan Route Resource & Proteksi Middleware Auth\n"
-    "Halaman pengaduan warga dibuka untuk umum pada rute '/lapor', sedangkan panel kelola laporan, ubah status, dan hapus laporan diproteksi ketat menggunakan middleware 'auth'."
+    "Sistem membedakan akses publik untuk formulir aduan masyarakat dengan panel pengelolaan laporan oleh staf BPBD. "
+    "Rute aduan warga dibuka secara umum, sedangkan pengelolaan tabel laporan dan penghapusan data dikunci di balik middleware `auth`."
 )
-add_code_block(doc, "// routes/web.php:\nRoute::get('/', function () { return redirect()->route('laporans.create'); });\nRoute::get('/lapor', [LaporanController::class, 'create'])->name('laporans.create');\nRoute::post('/lapor', [LaporanController::class, 'store'])->name('laporans.store');\n\nRoute::middleware('guest')->group(function () {\n    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');\n    Route::post('/login', [AuthController::class, 'login']);\n    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');\n    Route::post('/register', [AuthController::class, 'register']);\n});\n\nRoute::middleware('auth')->group(function () {\n    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');\n    Route::resource('laporans', LaporanController::class)->except(['create', 'store']);\n});")
+# CodeSnap 5: Routes Web
+add_image_with_caption(doc, os.path.join(cs_dir, "05_routes_web.png"), 
+                       "CodeSnap 5: Konfigurasi Rute Resource dan Middleware pada routes/web.php", width=Inches(5.6))
 
-add_heading_styled(doc, "4.2 Penerapan pada Project Tugas Akhir (Smart Traffic Finder)", level=2)
+add_heading_styled(doc, "4.6 Controller Autentikasi Petugas BPBD Mandiri (Manual Auth)", level=2)
 doc.add_paragraph(
-    "Pada project Tugas Akhir Smart Traffic Finder yang berlokasi di 'E:\\Kuliah\\PABW\\PABW', fitur unggah bukti foto kondisi kemacetan dan kecelakaan telah disempurnakan dengan standar Modul 7:\n"
-    "1. Validasi berkas diperketat pada LaporanController dengan batas maksimal 2048 KB (2 MB) dan format MIME gambar terverifikasi.\n"
-    "2. Penyimpanan file beralih menggunakan disk publik Laravel (store('foto_laporan', 'public')) yang terhubung melalui symbolic link 'public/storage'.\n"
-    "3. Logika update dan destroy ditambahkan mekanisme deteksi dan penghapusan file lama menggunakan Facade Storage, memastikan integritas penyimpanan berkas server.\n"
-    "4. Halaman pengelolaan laporan terlindungi penuh di balik middleware auth dan session login pengguna."
+    "Autentikasi staf BPBD dibangun secara mandiri menggunakan `AuthController` dengan metode login, regenerasi session, "
+    "dan proteksi logout POST CSRF."
 )
+# CodeSnap 6: AuthController
+add_image_with_caption(doc, os.path.join(cs_dir, "06_auth_controller.png"), 
+                       "CodeSnap 6: Logika Autentikasi Mandiri Petugas (app/Http/Controllers/AuthController.php)", width=Inches(5.6))
+
+add_heading_styled(doc, "4.7 Implementasi Standar Upload File pada Tugas Akhir Smart Traffic Finder", level=2)
+doc.add_paragraph(
+    "Pada project Tugas Akhir Smart Traffic Finder, mekanisme unggah foto bukti kemacetan/kecelakaan diperbarui dengan "
+    "standar validasi Modul 7, penyimpanan disk public, dan pembersihan berkas fisik secara otomatis."
+)
+# CodeSnap 7: Tubes Laporan Controller
+add_image_with_caption(doc, os.path.join(cs_dir, "07_tubes_laporan_controller.png"), 
+                       "CodeSnap 7: Standardisasi Upload Berkas & Clean-up Storage pada Smart Traffic Finder", width=Inches(5.6))
 
 # ==================== HASIL DAN DOKUMENTASI PROGRAM ====================
 add_heading_styled(doc, "5. Hasil dan Dokumentasi Program", level=1)
 
-doc.add_paragraph("Berikut adalah dokumentasi pengujian antarmuka dan basis data yang berhasil dijalankan:")
+doc.add_paragraph(
+    "Berikut merupakan dokumentasi visual pengujian antarmuka aplikasi, pesan galat validasi, "
+    "pengelolaan basis data, dan verifikasi berkas fisik pada storage server:"
+)
 
 ss_items = [
     ("01_laporbanjir_form_warga.png", "Gambar 7.1: Form Pengaduan Lapor Banjir bagi Warga (Halaman Publik)",
@@ -385,19 +393,19 @@ ss_items = [
 ss_base = r"E:\Kuliah\PABW\praktikum7\screenshots"
 for fname, cap, desc in ss_items:
     fpath = os.path.join(ss_base, fname)
-    add_image_with_caption(doc, fpath, cap, width=Inches(5.6))
+    add_image_with_caption(doc, fpath, cap, width=Inches(5.5))
     p_d = doc.add_paragraph(desc)
     p_d.paragraph_format.space_before = Pt(0)
     p_d.paragraph_format.space_after = Pt(8)
     p_d.runs[0].font.name = 'Calibri'
     p_d.runs[0].font.size = Pt(9.5)
 
-# Bukti database & storage
+# Bukti database & storage callout
 add_callout(doc, 
-    "Verifikasi Penyimpanan Database & Storage Server:\n"
-    "1. Database MySQL (db_laporbanjir, tabel 'laporans'): Hanya menyimpan string path relatif berkas pada kolom 'foto', contoh: 'foto_banjir/bpg6JBLMW6HrXHa1vQhYgMxgvluadCgnmYtKVE7N.jpg'.\n"
-    "2. Folder Fisik Server (storage/app/public/foto_banjir): Menampung berkas biner fisik gambar dengan enkripsi nama acak hash unik.\n"
-    "3. Seluruh unit/feature test otomatis (Pest/PHPUnit) lulus pengujian (PASSED 100%).",
+    "Verifikasi Penyimpanan Database & Filesystem Storage:\n"
+    "1. Basis Data MySQL (db_laporbanjir, tabel 'laporans'): Menyimpan path relatif string berkas pada kolom 'foto', contoh: 'foto_banjir/bpg6JBLMW6HrXHa1vQhYgMxgvluadCgnmYtKVE7N.jpg'.\n"
+    "2. Folder Fisik Server (storage/app/public/foto_banjir): Menampung file gambar biner hasil fungsi store() dengan penamaan acak unik anti-tabrakan.\n"
+    "3. Pengujian Otomatis (PHPUnit/Pest Feature Test): Seluruh assertions uji coba rute dan upload berkas berstatus PASSED (100%).",
     title="Integritas Basis Data & Filesystem"
 )
 
@@ -451,17 +459,54 @@ p_kesimpulan = doc.add_paragraph(
 p_kesimpulan.paragraph_format.line_spacing = 1.15
 p_kesimpulan.paragraph_format.space_after = Pt(8)
 
-# ==================== LAMPIRAN GITHUB ====================
+# ==================== LAMPIRAN GITHUB RESMI ====================
 add_heading_styled(doc, "8. Lampiran Link Repositori GitHub", level=1)
 p_git = doc.add_paragraph(
-    "Seluruh kode sumber (source code) aplikasi LaporBanjir dan integrasi Tugas Akhir Smart Traffic Finder telah diunggah ke repositori GitHub resmi:\n\n"
-    "• Repositori Praktikum Modul 7 (LaporBanjir & CRUD Berkas): https://github.com/username-mahasiswa/pabw-praktikum7-laporbanjir\n"
-    "• Repositori Tugas Akhir (Smart Traffic Finder): https://github.com/username-mahasiswa/smart-traffic-finder\n\n"
-    "Catatan: Tautan di atas dapat disesuaikan dengan akun GitHub pribadi mahasiswa sebelum pengumpulan akhir."
+    "Seluruh kode sumber (source code) aplikasi LaporBanjir dan integrasi fitur CRUD file upload pada Tugas Akhir "
+    "telah dikelola menggunakan Git Version Control dan dihubungkan ke akun GitHub resmi:\n"
 )
 p_git.paragraph_format.line_spacing = 1.15
 
-# Save docx
-output_docx = r"E:\Kuliah\PABW\praktikum7\Laporan_Praktikum_Modul7_Ahmad_Haris_Dawaaul_Qulub.docx"
+tbl_git = doc.add_table(rows=1, cols=3)
+tbl_git.alignment = WD_TABLE_ALIGNMENT.CENTER
+g_hdr = tbl_git.rows[0].cells
+g_hdr[0].text = "No"
+g_hdr[1].text = "Nama Repositori / Proyek"
+g_hdr[2].text = "Tautan Repositori GitHub Resmi"
+for cell in g_hdr:
+    set_cell_background(cell, "1F4E79")
+    set_cell_margins(cell, top=100, bottom=100, left=120, right=120)
+    for p in cell.paragraphs:
+        for r in p.runs:
+            r.font.name = 'Calibri'
+            r.font.bold = True
+            r.font.color.rgb = RGBColor(255, 255, 255)
+
+git_links = [
+    ("1", "Praktikum Modul 7 (Aplikasi LaporBanjir & CRUD)", "https://github.com/HarisDawa/praktikum7-laporbanjir.git"),
+    ("2", "Tugas Akhir PABW (Smart Traffic Finder)", "https://github.com/HarisDawa/PABW_TA.git")
+]
+
+for no, nama, url in git_links:
+    row_cells = tbl_git.add_row().cells
+    row_cells[0].text = no
+    row_cells[1].text = nama
+    row_cells[2].text = url
+    for c_idx, cell in enumerate(row_cells):
+        set_cell_margins(cell, top=80, bottom=80, left=100, right=100)
+        for p in cell.paragraphs:
+            p.paragraph_format.space_before = Pt(2)
+            p.paragraph_format.space_after = Pt(2)
+            for r in p.runs:
+                r.font.name = 'Calibri'
+                r.font.size = Pt(10)
+                if c_idx == 2:
+                    r.font.bold = True
+                    r.font.color.rgb = RGBColor(15, 76, 129)
+
+doc.add_paragraph().paragraph_format.space_after = Pt(8)
+
+# Save updated docx
+output_docx = r"E:\Kuliah\PABW\praktikum7\Laporan_Praktikum_Modul7_Ahmad_Haris_Dawaaul_Qulub_CodeSnap.docx"
 doc.save(output_docx)
-print("DOCX successfully generated:", output_docx)
+print("UPDATED DOCX WITH CODESNAPS AND GITHUB LINKS GENERATED:", output_docx)

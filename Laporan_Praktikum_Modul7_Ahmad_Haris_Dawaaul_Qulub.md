@@ -217,9 +217,21 @@ Seluruh tangkapan layar pengujian antarmuka dan basis data tersimpan di folder `
 ---
 
 ## 8. Lampiran Link Repositori GitHub
-- **Repositori Praktikum Modul 7 (LaporBanjir & Praktikum)**:  
-  `https://github.com/AhmadHarisDQ/pabw-praktikum7-laporbanjir`
-- **Repositori Tugas Akhir (Smart Traffic Finder)**:  
-  `https://github.com/AhmadHarisDQ/smart-traffic-finder`
+Seluruh kode sumber (source code) aplikasi LaporBanjir dan integrasi fitur CRUD file upload pada Tugas Akhir telah dikelola menggunakan Git Version Control dan dihubungkan ke akun GitHub resmi:
 
-*(Tautan repositori di atas dapat disesuaikan dengan akun GitHub pribadi Anda)*
+| No | Nama Repositori / Proyek | Tautan Repositori GitHub Resmi |
+|---|---|---|
+| 1 | **Praktikum Modul 7 (Aplikasi LaporBanjir & CRUD)** | [https://github.com/HarisDawa/praktikum7-laporbanjir.git](https://github.com/HarisDawa/praktikum7-laporbanjir.git) |
+| 2 | **Tugas Akhir PABW (Smart Traffic Finder)** | [https://github.com/HarisDawa/PABW_TA.git](https://github.com/HarisDawa/PABW_TA.git) |
+
+### Perintah Push ke GitHub untuk Mahasiswa:
+Untuk mem-push commit repositori `praktikum7-laporbanjir` yang sudah disiapkan ke GitHub pribadi:
+```bash
+cd E:\Kuliah\PABW\praktikum7
+git push -u origin main
+```
+Untuk mem-push commit pembaruan pada repositori Tugas Akhir (`PABW_TA`):
+```bash
+cd E:\Kuliah\PABW\PABW
+git push origin main
+```
