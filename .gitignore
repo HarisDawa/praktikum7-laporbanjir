@@ -1,0 +1,17 @@
+# .gitignore for praktikum7
+/vendor/
+/node_modules/
+.env
+.phpunit.result.cache
+*.log
+~$*.docx
+*.tmp
+laporbanjir/vendor/
+laporbanjir/node_modules/
+laporbanjir/.env
+crud-breeze/vendor/
+crud-breeze/node_modules/
+crud-breeze/.env
+crud-manual/vendor/
+crud-manual/node_modules/
+crud-manual/.env
